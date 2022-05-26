@@ -1,0 +1,7 @@
+add_executable(atomic_shared_ptr_test atomic_shared_ptr_test.cpp)
+target_link_libraries(atomic_shared_ptr_test PRIVATE atomic_shared_ptr)
+add_warning_flags(atomic_shared_ptr_test)
+add_sanitizer_flags(atomic_shared_ptr_test)
+
+enable_testing()
+add_test(NAME atomic_shared_ptr_test COMMAND atomic_shared_ptr_test)

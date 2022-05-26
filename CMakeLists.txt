@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.18)
 
 project(
     AtomicSharedPtr
@@ -32,3 +32,15 @@ if(ENABLE_CPPCHECK)
     set(CMAKE_CXX_CPPCHECK "cppcheck" ; --quiet;--enable=all;--inline-suppr;
                            --suppressions-list=${CMAKE_BINARY_DIR}/cppcheck-supression-list.txt)
 endif(ENABLE_CPPCHECK)
+
+include(SanitizerFlags)
+include(WarningFlags)
+
+find_package(Threads REQUIRED)
+
+add_library(atomic_shared_ptr INTERFACE)
+target_compile_features(atomic_shared_ptr INTERFACE cxx_std_20)
+target_include_directories(atomic_shared_ptr INTERFACE ${PROJECT_SOURCE_DIR}/include)
+target_link_libraries(atomic_shared_ptr INTERFACE Threads::Threads)
+
+add_subdirectory(test)

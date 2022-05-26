@@ -6,3 +6,9 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 # [Optional] Uncomment this section to install additional packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+# Install clangd
+RUN wget -c https://github.com/clangd/clangd/releases/download/14.0.3/clangd-linux-14.0.3.zip && \
+    unzip -q clangd-linux-14.0.3.zip && \
+    sudo cp -r clangd-linux-14.0.3/* /usr/local/ && \
+    rm -r clangd-linux-14.0.3 clangd-linux-14.0.3.zip
