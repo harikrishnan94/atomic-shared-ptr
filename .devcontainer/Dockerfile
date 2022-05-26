@@ -14,6 +14,12 @@ RUN wget -q -c https://github.com/clangd/clangd/releases/download/14.0.3/clangd-
     rm -r clangd_14.0.3 clangd-linux-14.0.3.zip
 
 # Install gcc-11
+RUN (echo deb http://deb.debian.org/debian testing main contrib non-free; \
+    echo deb-src http://deb.debian.org/debian testing main contrib non-free) | sudo tee /etc/apt/sources.list.d/gcc-11.list
+RUN sudo apt update
+RUN sudo apt install -y gcc-11 g++-11 -t testing
+RUN sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11
+RUN sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 11
 
 # Install cmake 3.23
 RUN wget -q -c https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2-linux-x86_64.sh && \
