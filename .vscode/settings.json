@@ -1,0 +1,4 @@
+{
+    "C_Cpp.intelliSenseEngine": "Disabled",
+    "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
+}
